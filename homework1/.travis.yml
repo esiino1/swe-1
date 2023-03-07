@@ -7,3 +7,14 @@ install:
 
 script:
   - pytest
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id:
+    secure: "Encrypted <AKIA3UO7CKKVJ3HPE4U5>="
+  secret_access_key:
+    secure: "Encypted <d6E1WOhdHVeL5HWZdqY2N6OloQkMqReATwM1nW0d>="
+  region: "us-west-2"
+  app: "swe-1"
+  env: "example-app-environment"
+  bucket_name: "the-target-S3-bucket"
