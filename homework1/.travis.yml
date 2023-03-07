@@ -19,7 +19,7 @@ deploy:
   app: "mysite"
   env: "mysite-dev"
   bucket_name: "http://mysite-dev22.us-east-1.elasticbeanstalk.com/"
-  bucket_path: "polls/"
+  bucket_path: "mysite/"
   on:
     repo: esiino1/swe1
     branch: main
