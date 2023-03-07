@@ -5,16 +5,21 @@ python:
 install:
   - pip install -r requirements.txt
 
+before_script:
+  - python3 manage.py migrate
+
 script:
   - pytest
 
 deploy:
   provider: elasticbeanstalk
-  access_key_id:
-    secure: "Encrypted <AKIA3UO7CKKVJ3HPE4U5>="
-  secret_access_key:
-    secure: "Encypted <d6E1WOhdHVeL5HWZdqY2N6OloQkMqReATwM1nW0d>="
-  region: "us-west-2"
-  app: "swe-1"
-  env: "example-app-environment"
-  bucket_name: "the-target-S3-bucket"
+  access_key_id: $ACCESS_KEY_ID
+  secret_access_key: $ACCESS_KEY
+  region: "us-east-1"
+  app: "mysite"
+  env: "mysite-dev"
+  bucket_name: "http://mysite-dev22.us-east-1.elasticbeanstalk.com/"
+  bucket_path: "polls/"
+  on:
+    repo: esiino1/swe1
+    branch: main
