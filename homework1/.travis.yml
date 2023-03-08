@@ -2,6 +2,9 @@ language: python
 python:
   - "3.8"
 
+env: 
+  - SECRET_KEY='TEST'
+
 install:
   - pip install -r requirements.txt
 
@@ -9,7 +12,15 @@ before_script:
   - python3 manage.py migrate
 
 script:
-  - pytest
+  - black --check
+
+  - flake8 .
+
+  - coverage run manage.py test
+
+after_script:
+  - coveralls
+  
 
 deploy:
   provider: elasticbeanstalk
@@ -18,7 +29,7 @@ deploy:
   region: "us-east-1"
   app: "mysite"
   env: "mysite-dev"
-  bucket_name: "http://mysite-dev22.us-east-1.elasticbeanstalk.com/"
+  bucket_name: "elasticbeanstalk-us-east-1-799868605098"
   bucket_path: "mysite/"
   on:
     repo: esiino1/swe1
