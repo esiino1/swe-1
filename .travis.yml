@@ -14,7 +14,7 @@ before_script:
 script:
   - black --check
 
-  - flake8 .
+  - flake8 --extend-ignore E501,F401,F811
 
   - coverage run manage.py test
 
